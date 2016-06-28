@@ -18,7 +18,7 @@
 #    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA  02110-1301 USA
 
 
-# USAGE:  gitrepodeduper  | duperemove -rh -
+# USAGE:  gitrepodeduper  | duperemove -dh -
 
 import sys
 if (sys.version_info.major != 3): # no python 3
