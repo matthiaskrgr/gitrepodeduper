@@ -36,7 +36,7 @@ for index, line in enumerate(rawhashlist): # list into sublist with words
 		continue
 
 	splitline = line.split()
-	newlist.append([splitline[1], splitline[3]]) #new list [hash, filename]
+	hashlist.append([splitline[1], splitline[3]]) #new list [hash, filename]
 
 hashlist.sort() #sort by hash
 
@@ -45,9 +45,9 @@ todedupe = []
 prev = 0
 cur = 1
 while (cur < len(hashlist)):
-	if (newlist[cur][0] == newlist[prev][0]): # current and previous hashes are identical, assume identical file
-		todedupe.append(newlist[cur][1]) # add both entrys to the list
-		todedupe.append(newlist[prev][1])
+	if (hashlist[cur][0] == hashlist[prev][0]): # current and previous hashes are identical, assume identical file
+		todedupe.append(hashlist[cur][1]) # add both entrys to the list
+		todedupe.append(hashlist[prev][1])
 	prev = cur
 	cur += 1
 
@@ -57,3 +57,4 @@ for i in todedupe: # print the files
 	print(i)
 
 # TODO: call duperemove with this
+
