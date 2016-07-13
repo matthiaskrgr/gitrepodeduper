@@ -28,6 +28,8 @@ if (sys.version_info.major != 3): # no python 3
 import subprocess
 
 
+reporoot = subprocess.Popen(["git", "rev-parse", "--show-toplevel"], stdout=subprocess.PIPE).communicate()[0].decode("utf-8").split("\n")[0]
+
 # shell:
 # git ls-files  -s  | cut -d' ' -f2 | sort -n | uniq -c | sort -n 
 rawhashlist = subprocess.Popen(["git", "ls-files", "-s"], stdout=subprocess.PIPE).communicate()[0].decode("utf-8").replace('\t',' ').split("\n")
@@ -39,7 +41,7 @@ for index, line in enumerate(rawhashlist): # list into sublist with words
 		continue
 
 	splitline = line.split()
-	hashlist.append([splitline[1], splitline[3]]) #new list [hash, filename]
+	hashlist.append([splitline[1],reporoot + "/" + splitline[3]]) #new list [hash, filename]
 
 hashlist.sort() #sort by hash
 
